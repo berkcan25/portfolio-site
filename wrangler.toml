@@ -1,5 +1,0 @@
-type = "javascript"
-account_id = "d699ac5d996ea4d3cc8822dd51363560"
-main="C:/Users/31547/portfolio/worker.js"
-workers_dev = true
-route = ""
