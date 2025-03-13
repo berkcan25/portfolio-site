@@ -3,14 +3,37 @@
 @tailwind utilities;
 
 img {
-    -moz-user-select: none;
-    -webkit-user-drag: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
-  
-    
-  ::selection {
-    background: #8d8d8d;
-  }
+  -moz-user-select: none;
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+
+::selection {
+  background: #8d8d8d;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.box::-webkit-scrollbar {
+  display: none;
+}
+
+.box:hover::-webkit-scrollbar {
+  display: block;
+}
+
+.box:hover::-webkit-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: auto;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.box {
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  overflow: auto; /* Allows scrolling */
+  /* Firefox */
+}
