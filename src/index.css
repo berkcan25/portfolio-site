@@ -28,12 +28,3 @@ img {
   -ms-overflow-style: none;
   scrollbar-width: auto;
 }
-
-/* Hide scrollbar for IE, Edge and Firefox */
-.box {
-  -ms-overflow-style: none;
-  /* IE and Edge */
-  scrollbar-width: none;
-  overflow: auto; /* Allows scrolling */
-  /* Firefox */
-}

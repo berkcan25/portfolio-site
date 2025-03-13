@@ -57,7 +57,7 @@ const ProjectsPage = () => {
           sm:pl-20 sm:pr-20
           ">
           <div className="col-span-1 row-span-1">
-            <a href="https://github.com/berkcan25/Budgetize" target="_blank"  className={`${textSizes.subtitle} underline flex`}>Budgetize
+            <a href="https://github.com/berkcan25/Budgetize" target="_blank" className={`${textSizes.subtitle} underline flex`}>Budgetize
               <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/externallink.svg`} alt="Arrow SVG" className="w-4 h-4" />
             </a>
 
