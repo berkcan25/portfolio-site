@@ -35,7 +35,7 @@ const ProjectsPage = () => {
   return (
 
 
-    <div className={`p-8 ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'} h-screen w-screen`}>
+    <div className={`p-8 ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'} h-auto w-screen`}>
       <Box theme={theme} className='h-full w-full flex flex-col gap-10 p-20'>
         <div className="flex flex-row gap-4 items-center">
           <div onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
