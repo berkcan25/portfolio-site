@@ -7,10 +7,10 @@ import { AppContext } from '../../AppContext';
 
 const StartPage = () => {
 
-  const { theme, setTheme } = useContext(AppContext);
+  const { theme } = useContext(AppContext);
 
   return (
-      <div className={`p-8 ${theme == 'dark' ? 'bg-bg-dark' : 'bg-bg-light'} h-screen w-screen`}>
+      <div className={`p-8 ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'} h-screen w-screen`}>
         <Box isClickable={true} theme={theme} to='/en/dashboard' className='h-full w-full flex flex-col justify-between p-10 sm:p-20'>
             <div className="text-5xl sm:text-8xl lg:text-9xl">
               <Typewriter words={["Merhaba", "Hello", "Bonjour", "Salam", "Привет"]}cursor={true} loop={false}/>

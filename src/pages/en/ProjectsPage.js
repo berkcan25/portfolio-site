@@ -14,7 +14,7 @@ const textSizes = {
 
 const ProjectsPage = () => {
 
-  const { theme, setTheme } = useContext(AppContext);
+  const { theme } = useContext(AppContext);
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -35,7 +35,7 @@ const ProjectsPage = () => {
   return (
 
 
-    <div className={`p-8 ${theme == 'dark' ? 'bg-bg-dark' : 'bg-bg-light'} h-screen w-screen`}>
+    <div className={`p-8 ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'} h-screen w-screen`}>
       <Box theme={theme} className='h-full w-full flex flex-col gap-10 p-20'>
         <div className="flex flex-row gap-4 items-center">
           <div onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
@@ -57,7 +57,7 @@ const ProjectsPage = () => {
           sm:pl-20 sm:pr-20
           ">
           <div className="col-span-1 row-span-1">
-            <a href="https://github.com/berkcan25/Budgetize" target="_blank" className={`${textSizes.subtitle} underline flex`}>Budgetize
+            <a href="https://github.com/berkcan25/Budgetize" target="_blank" rel="noreferrer" className={`${textSizes.subtitle} underline flex`}>Budgetize
               <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/externallink.svg`} alt="Arrow SVG" className="w-4 h-4" />
             </a>
 
@@ -70,7 +70,7 @@ const ProjectsPage = () => {
 
 
           <div className="col-span-1 row-span-1">
-              <a href="https://github.com/berkcan25/turkish-wordle" target="_blank" className={`${textSizes.subtitle} underline flex`}>
+              <a href="https://github.com/berkcan25/turkish-wordle" target="_blank" rel="noreferrer" className={`${textSizes.subtitle} underline flex`}>
               Turkish Wordle
               <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/externallink.svg`} alt="Arrow SVG" className="w-4 h-4" />
               </a>

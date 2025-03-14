@@ -14,7 +14,7 @@ const Box = ({ children, className = '', isClickable = false, to = '', onClickFu
     }
   };
 
-  const { theme, setTheme } = useContext(AppContext);
+  const { theme } = useContext(AppContext);
 
   return (
     <div
@@ -22,7 +22,7 @@ const Box = ({ children, className = '', isClickable = false, to = '', onClickFu
       className={` box
         border-4 border-borders rounded-lg 
         p-6 shadow-md
-        ${theme == 'dark' ? 'bg-bg-dark text-white hover:border-hover-borders-dark hover:bg-sky-950' : 'bg-bg-light text-black hover:bg-hover-bg-light'} 
+        ${theme === 'dark' ? 'bg-bg-dark text-white hover:border-hover-borders-dark hover:bg-sky-950' : 'bg-bg-light text-black hover:bg-hover-bg-light'} 
         transition duration-300 ease-in-out
         sm:overflow-scroll sm:no-scrollbar
         ${isClickable ? 'cursor-pointer' : ''}

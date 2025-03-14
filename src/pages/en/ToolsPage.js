@@ -2,7 +2,6 @@ import React, { useState, useContext } from 'react';
 import Box from '../../components/Box'; // Adjust the path as needed
 import '../../index.css'; // Adjust the path to your CSS file
 import "@fontsource/roboto-mono";
-import { BrowserRouter, Router } from 'react-router-dom';
 import { AppContext } from '../../AppContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -15,11 +14,7 @@ const textSizes = {
 
 const Dashboard = () => {
 
-  const { theme, setTheme } = useContext(AppContext);
-
-  const clickToggleTheme = () => {
-    setTheme(theme === 'dark' ? 'light' : 'dark')
-  }
+  const { theme } = useContext(AppContext);
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -39,7 +34,7 @@ const Dashboard = () => {
 
   return (
     <div className={`p-8 
-      ${theme == 'dark' ? 'bg-bg-dark' : 'bg-bg-light'}
+      ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'}
     flex flex-col overflow-auto
     sm:grid sm:grid-cols-3 sm:grid-rows-1 gap-5
     min-h-screen max-h-screen min-w-screen max-w-screen`}>

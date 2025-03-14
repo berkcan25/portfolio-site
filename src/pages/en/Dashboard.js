@@ -1,8 +1,7 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 import Box from '../../components/Box'; // Adjust the path as needed
 import '../../index.css'; // Adjust the path to your CSS file
 import "@fontsource/roboto-mono";
-import { BrowserRouter, Router } from 'react-router-dom';
 import { AppContext } from '../../AppContext';
 
 const textSizes = {
@@ -20,13 +19,11 @@ const Dashboard = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
   }
 
-  const { lang, setLang } = useContext(AppContext);
-
   console.log(theme);
 
   return (
     <div className={`p-8 
-      ${theme == 'dark' ? 'bg-bg-dark' : 'bg-bg-light'}
+      ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'}
     flex flex-col overflow-auto
     sm:grid sm:grid-cols-3 sm:grid-rows-2 gap-5
     min-h-screen max-h-screen min-w-screen max-w-screen`}>
