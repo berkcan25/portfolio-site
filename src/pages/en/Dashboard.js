@@ -26,7 +26,8 @@ const Dashboard = () => {
       ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'}
     flex flex-col overflow-auto
     sm:grid sm:grid-cols-3 sm:grid-rows-2 gap-5
-    min-h-screen max-h-screen min-w-screen max-w-screen`}>
+    min-h-screen max-h-screen min-w-screen max-w-screen
+    transition duration-300 ease-in-out`}>
       {/* Profile Section */}
       <Box className="flex flex-col items-start space-y-4 col-span-1 row-span-1">
         <h1 className={textSizes.title}>Berk Can Tunçtan</h1>
