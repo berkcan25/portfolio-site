@@ -110,6 +110,13 @@ const Dashboard = () => {
         <p className={textSizes.normal}>
           I am a Software Developer studying CS at Georgia Tech with a love of languages and linguistics!
         </p>
+        <p className={textSizes.normal}>
+          Languages: <span title='English' className='cursor-default'> 🇺🇸 </span>
+           <span title='Turkish' className='cursor-default'> 🇹🇷 </span>
+           <span title='French' className='cursor-default'> 🇫🇷 </span>
+           <span title='Azerbaijani' className='cursor-default'> 🇦🇿 </span>
+           <span title='Russian' className='cursor-default'> 🇷🇺 </span>
+        </p>
         <div className="flex items-center">
           <a href="/resumes/resume.pdf" download="Berk_Tunctan_Resume.docx" className={`mt-auto underline ${textSizes.normal}`}>Résumé</a>
           <a href="/resumes/resume.pdf" download="Berk_Tunctan_Resume.docx" className={`mt-auto ${textSizes.normal}`}>
