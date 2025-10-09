@@ -37,13 +37,13 @@ const Dashboard = () => {
         </p>
         <div className="flex justify-around w-full gap-2">
           <a href="https://github.com/berkcan25" target="_blank" rel="noopener noreferrer">
-            <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/githubvector.svg`} alt="Clickable SVG" className="w-12 h-12" />
+            <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/githubvector.svg`} alt="Clickable SVG" className="w-12 h-12 transition duration-300 ease-in-out" />
           </a>
           <a href="https://www.linkedin.com/in/berk-c-tunctan/" target="_blank" rel="noopener noreferrer">
-            <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/linkedinvector.svg`} alt="Clickable SVG" className="w-12 h-12" />
+            <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/linkedinvector.svg`} alt="Clickable SVG" className="w-12 h-12 transition duration-300 ease-in-out" />
           </a>
           <a href="mailto:bctunctan@gmail.com" target="_blank" rel="noopener noreferrer">
-            <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/emailvector.svg`} alt="Clickable SVG" className="w-12 h-12" />
+            <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/emailvector.svg`} alt="Clickable SVG" className="w-12 h-12 transition duration-300 ease-in-out" />
           </a>
         </div>
       </Box>
@@ -110,8 +110,10 @@ const Dashboard = () => {
           I am a Software Developer studying CS at Georgia Tech with a love of languages and linguistics!
         </p>
         <div className="flex items-center">
-          <a href="/resumes/Berk_Can_Tunctan_intern.docx" download="Berk_Tunctan_Resume.docx" className={`mt-auto underline ${textSizes.normal}`}>Résumé</a>
-          <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/downloadbtn.svg`} alt="Download" className='w-5 h-5 ml-3' />
+          <a href="/resumes/resume.pdf" download="Berk_Tunctan_Resume.docx" className={`mt-auto underline ${textSizes.normal}`}>Résumé</a>
+          <a href="/resumes/resume.pdf" download="Berk_Tunctan_Resume.docx" className={`mt-auto ${textSizes.normal}`}>
+            <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/downloadbtn.svg`} alt="Download" className='w-5 h-5 ml-3 transition duration-300 ease-in-out' />
+          </a>
 
         </div>
       </Box>
