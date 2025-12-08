@@ -7,7 +7,7 @@ import { AppContext } from '../AppContext';
 
 const StartPage = () => {
 
-  const { theme } = useContext(AppContext);
+  const { theme, setTheme, setLanguage, t } = useContext(AppContext);
 
   return (
       <div className={`p-8 ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'} h-screen w-screen`}>
@@ -15,8 +15,8 @@ const StartPage = () => {
             <div className="text-5xl sm:text-8xl lg:text-9xl">
               <Typewriter words={["Merhaba", "Hello", "Bonjour", "Salam", "Привет"]}cursor={true} loop={false}/>
             </div>
-            <h1 className="text-7xl sm:text-7xl lg:text-8xl">I'm Berk!</h1>
-            <p className="text-5xl sm:text-6xl lg:text-7xl">Click to Start</p>
+            <h1 className="text-7xl sm:text-7xl lg:text-8xl">{t.greeting}</h1>
+            <p className="text-5xl sm:text-6xl lg:text-7xl">{t.clickStart}</p>
         </Box>
       </div>
   );
