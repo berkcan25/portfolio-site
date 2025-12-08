@@ -9,7 +9,9 @@ img {
   -ms-user-select: none;
   user-select: none;
 }
-
+html {
+  overscroll-behavior: none;
+}
 
 ::selection {
   background: #8d8d8d;
@@ -27,4 +29,14 @@ img {
 .box:hover::-webkit-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: auto;
+}
+
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none;    /* Firefox */
+  }
 }

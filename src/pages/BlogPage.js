@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import Box from '../../components/Box'; // Adjust the path as needed
-import '../../index.css'; // Adjust the path to your CSS file
+import Box from '../components/Box'; // Adjust the path as needed
+import '../index.css'; // Adjust the path to your CSS file
 import "@fontsource/roboto-mono";
-import { AppContext } from '../../AppContext';
+import { AppContext } from '../AppContext';
 import { useNavigate } from 'react-router-dom';
 
 const textSizes = {
@@ -12,9 +12,9 @@ const textSizes = {
   medium: 'text-base sm:text-lg md:text-xl pt-5 pb-5',
 };
 
-const ProjectsPage = () => {
+const BlogPage = () => {
 
-  const { theme } = useContext(AppContext);
+  const { theme, setTheme, setLanguage, t } = useContext(AppContext);
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -29,13 +29,13 @@ const ProjectsPage = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/en/dashboard")
+    navigate("/dashboard")
   };
 
   return (
 
 
-    <div className={`p-8 ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'} h-auto w-screen`}>
+    <div className={`p-8 ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'} min-h-screen min-w-screen`}>
       <Box theme={theme} className='h-full w-full flex flex-col gap-10 p-20'>
         <div className="flex flex-row gap-4 items-center">
           <div onClick={handleClick} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}
@@ -49,27 +49,28 @@ const ProjectsPage = () => {
                `}>
             <img src={`/${(!isHovered && theme === 'dark') || (isHovered && theme === "light") ? 'dark' : 'light'}icons/returnicon.svg`} alt="Back" />
           </div>
-          <h1 className={textSizes.title}>Latest Projects</h1>
+          <h1 className={textSizes.title}>Linguistics</h1>
         </div>
         <div className="
           flex flex-col 
-          md:grid md:grid-cols-3 md:grid-rows-3 gap-5
           sm:pl-20 sm:pr-20
           ">
-          <div className="col-span-1 row-span-1">
-            <a href="https://github.com/berkcan25/Budgetize" target="_blank" rel="noreferrer" className={`${textSizes.subtitle} underline flex`}>Budgetize
-              <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/externallink.svg`} alt="Arrow SVG" className="w-4 h-4" />
+          <div className="mb-8">
+            <a href="#" target="_blank" rel="noreferrer" className={`${textSizes.subtitle} underline flex items-center`}>
+              Turkish Word Origins Analysis
+              <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/externallink.svg`} alt="External link icon" className="w-4 h-4 ml-1.5" />
             </a>
 
-            <p className={`${textSizes.normal} pt-3 pb-3`}>Full-stack webapp allowing users to compare grocery prices in various grocery stores and products.
-              Automatic data collection through webscraping and APIs.
+            <p className={`${textSizes.normal} pt-3 pb-3`}>
+              Data analysis project visualizing the etymological origins of the Turkish language. Loanwords were grouped by source and categorized into 'Eastern' and 'Western' groups to highlight historical linguistic influences.
             </p>
-            <p> React, TailwindCSS, ExpressJS, Puppeteer, Axios</p>
+            
+            <p>Python, Pandas, Matplotlib</p>
           </div>
 
 
 
-          <div className="col-span-1 row-span-1">
+          <div className="mb-8">
               <a href="https://github.com/berkcan25/turkish-wordle" target="_blank" rel="noreferrer" className={`${textSizes.subtitle} underline flex`}>
               Turkish Wordle
               <img src={`/${theme === 'dark' ? 'dark' : 'light'}icons/externallink.svg`} alt="Arrow SVG" className="w-4 h-4" />
@@ -86,4 +87,4 @@ const ProjectsPage = () => {
   );
 };
 
-export default ProjectsPage;
+export default BlogPage;

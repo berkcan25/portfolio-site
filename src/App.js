@@ -4,22 +4,23 @@ import "@fontsource/roboto-mono";
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { AppProvider } from './AppContext';
 
-import StartPageEN from './pages/en/StartPage';
-import DashboardEN from './pages/en/Dashboard';
-import ProjectsPageEN from './pages/en/ProjectsPage';
-import ToolsPageEN from './pages/en/ToolsPage';
+import StartPage from './pages/StartPage';
+import Dashboard from './pages/Dashboard';
+import ProjectsPage from './pages/ProjectsPage';
+import ToolsPage from './pages/ToolsPage';
+import BlogPage from './pages/BlogPage';
+
 
 const App = () => {
   return (
     <AppProvider>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Navigate to="/en" replace={true} />}/>
-          {/* English Routes */}
-          <Route path="/en" element={<StartPageEN />} />
-          <Route path="/en/dashboard" element={<DashboardEN />} />
-          <Route path="/en/projects" element={<ProjectsPageEN />} />
-          <Route path="/en/tools" element={<ToolsPageEN />} />
+          <Route path="/" element={<StartPage />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/tools" element={<ToolsPage />} />
+          <Route path="/blog" element={<BlogPage />} />
         </Routes>
       </BrowserRouter>
     </AppProvider>

@@ -5,6 +5,7 @@
   "dependencies": {
     "@fontsource/roboto-mono": "^5.2.5",
     "cra-template": "1.2.0",
+    "framer-motion": "^12.23.25",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.3.0",

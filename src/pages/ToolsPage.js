@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
-import Box from '../../components/Box'; // Adjust the path as needed
-import '../../index.css'; // Adjust the path to your CSS file
+import Box from '../components/Box'; // Adjust the path as needed
+import '../index.css'; // Adjust the path to your CSS file
 import "@fontsource/roboto-mono";
-import { AppContext } from '../../AppContext';
+import { AppContext } from '../AppContext';
 import { useNavigate } from 'react-router-dom';
 
 const textSizes = {
@@ -12,9 +12,9 @@ const textSizes = {
   medium: 'text-base sm:text-lg md:text-xl pt-5 pb-5',
 };
 
-const Dashboard = () => {
+const ToolsPage = () => {
 
-  const { theme } = useContext(AppContext);
+  const { theme, t } = useContext(AppContext);
 
   const [isHovered, setIsHovered] = useState(false);
 
@@ -29,7 +29,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/en/dashboard")
+    navigate("/dashboard")
   };
 
   return (
@@ -37,7 +37,7 @@ const Dashboard = () => {
       ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'}
     flex flex-col overflow-auto
     sm:grid sm:grid-cols-3 sm:grid-rows-1 gap-5
-    min-h-screen max-h-screen min-w-screen max-w-screen`}>
+    min-h-screen min-w-screen`}>
       <div className="col-span-1 flex flex-col gap-5 max-w-full max-h-full">
 
         {/* Return Box */}
@@ -52,10 +52,10 @@ const Dashboard = () => {
               p-3 bg-${(!isHovered && theme === 'dark') || (isHovered && theme === "light") ? 'borders' : 'hover-borders-dark'}
               hover:cursor-pointer hover:bg-current
               transition duration-150 ease-in-out
-               `}>
+                `}>
                 <img src={`/${(!isHovered && theme === 'dark') || (isHovered && theme === "light") ? 'dark' : 'light'}icons/returnicon.svg`} alt="Back" />
               </div>
-              <h1 className={textSizes.title}>Tools</h1>
+              <h1 className={textSizes.title}>{t.tools}</h1>
 
             </div>
           </div>
@@ -64,9 +64,9 @@ const Dashboard = () => {
         {/* Tools Section */}
         <Box className="col-span-1">
           <div className="space-y-4 h-full ">
-            <div className="flex flex-col items-center justify-between text-left gap-3">
-              <h2 className={`${textSizes.subtitle} font-bold`}>Tools</h2>
-              <p className={textSizes.normal}>A snapshot of the tools and technologies I use daily, along with those I'm familiar with. </p>
+            <div className="flex flex-col justify-between text-left gap-3">
+              <h2 className={`${textSizes.subtitle} font-bold`}>{t.tools}</h2>
+              <p className={textSizes.normal}>{t.toolsDesc}</p>
             </div>
 
           </div>
@@ -78,7 +78,7 @@ const Dashboard = () => {
       <Box className="col-span-1 row-span-2 max-w-full max-h-full">
         <div className="space-y-4 h-full gap-8 flex flex-col">
           <div className="flex items-center justify-between">
-            <h2 className={`${textSizes.subtitle} font-bold`}>My Everyday</h2>
+            <h2 className={`${textSizes.subtitle} font-bold`}>{t.myEveryday}</h2>
           </div>
 
 
@@ -116,16 +116,13 @@ const Dashboard = () => {
               <p className={textSizes.normal}>HTML5/CSS3</p>
           </div>
 
-
-
-
         </div>
       </Box>
 
       <Box className="col-span-1 row-span-2 max-w-full max-h-full">
         <div className="space-y-4 h-full gap-8 flex flex-col">
           <div className="flex items-center justify-between">
-            <h2 className={`${textSizes.subtitle} font-bold`}>Familiar With</h2>
+            <h2 className={`${textSizes.subtitle} font-bold`}>{t.familiarWith}</h2>
           </div>
 
           {/* Tool 1*/}
@@ -176,4 +173,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default ToolsPage;
