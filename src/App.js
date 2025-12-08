@@ -8,7 +8,7 @@ import StartPage from './pages/StartPage';
 import Dashboard from './pages/Dashboard';
 import ProjectsPage from './pages/ProjectsPage';
 import ToolsPage from './pages/ToolsPage';
-import BlogPage from './pages/BlogPage';
+// import BlogPage from './pages/BlogPage';
 
 
 const App = () => {
@@ -20,7 +20,7 @@ const App = () => {
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/tools" element={<ToolsPage />} />
-          <Route path="/blog" element={<BlogPage />} />
+          {/* <Route path="/blog" element={<BlogPage />} /> */}
         </Routes>
       </BrowserRouter>
     </AppProvider>

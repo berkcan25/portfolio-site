@@ -211,7 +211,7 @@ const Dashboard = () => {
       </Box>
 
       <div className="col-span-1 flex flex-col justify-between gap-5">
-        <Box isClickable={true} to='/blog'>
+        {/* <Box isClickable={true} to='/blog'>
           <div className="flex items-center justify-between">
             <h2 className={textSizes.subtitle}>{t.lingProjects}</h2>
             <img 
@@ -220,7 +220,7 @@ const Dashboard = () => {
               className={`w-4 h-4 ${iconTransitionClass}`} 
             />
           </div>
-        </Box>
+        </Box> */}
 
         <div className="flex flex-row gap-6">
           <Box isClickable={true} className='w-1/2 flex items-center justify-center' onClickFunc={clickToggleTheme}>
