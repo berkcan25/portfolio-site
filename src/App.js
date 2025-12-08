@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import "@fontsource/roboto-mono";
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { AppProvider } from './AppContext';
 
 import StartPage from './pages/StartPage';
