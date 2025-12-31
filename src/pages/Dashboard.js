@@ -91,7 +91,7 @@ const Dashboard = () => {
       </Box>
 
       {/* Latest Projects Section */}
-      <Box isClickable={true} to="/projects" className="col-span-1 row-span-2 flex flex-col overflow-hidden">
+      <Box isClickable={true} to="/projects" className="col-span-1 row-span-2 flex flex-col">
         <div className="flex flex-col h-full gap-6"> {/* space-y yerine gap ve flex kullandık */}
           
           {/* Header */}
@@ -239,7 +239,7 @@ const Dashboard = () => {
               <img 
                 src="/lighticons/globeicon.svg" 
                 alt="Toggle Language" 
-                className={iconTransitionClass}
+                className={`${iconTransitionClass} min-h-8 min-w-8`}
               />
             </Box>
 
