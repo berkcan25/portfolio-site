@@ -21,7 +21,7 @@ const Box = ({ children, className = '', isClickable = false, to = '', onClickFu
         border-4 border-borders rounded-lg 
         p-6 shadow-md
         transition-all duration-300 ease-in-out
-        sm:overflow-scroll sm:no-scrollbar
+        sm:no-scrollbar
         
         /* Light Mode Styles (Default) */
         bg-bg-light text-black hover:bg-hover-bg-light

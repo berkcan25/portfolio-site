@@ -54,7 +54,7 @@ const Dashboard = () => {
     <div className={`p-8 
       ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'}
     flex flex-col overflow-auto
-    sm:grid sm:grid-cols-3 sm:grid-rows-2 gap-5
+    lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-5
     min-h-screen max-h-screen min-w-screen max-w-screen
     transition duration-300 ease-in-out`}>
       {/* Profile Section */}
