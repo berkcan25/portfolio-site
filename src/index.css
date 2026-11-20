@@ -40,3 +40,45 @@ html {
     scrollbar-width: none;    /* Firefox */
   }
 }
+/* Dashboard motion stays inside the existing grid. */
+.dashboard-card {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+}
+.dashboard-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  background: radial-gradient(240px circle at var(--pointer-x, 50%) var(--pointer-y, 50%), rgb(249 115 22 / 0.12), transparent 75%);
+  transition: opacity 240ms ease;
+}
+.dark .dashboard-card::before {
+  background: radial-gradient(240px circle at var(--pointer-x, 50%) var(--pointer-y, 50%), rgb(56 189 248 / 0.13), transparent 75%);
+}
+.box:focus-visible, .dashboard a:focus-visible, .dashboard button:focus-visible {
+  outline: 3px solid #0284c7;
+  outline-offset: 5px;
+}
+.social-links a {
+  border-radius: 8px;
+  transition: transform 200ms ease;
+}
+.language-control { z-index: 30; }
+.language-options { translate: -50% 0; width: max-content; }
+.language-option { transition: background-color 180ms ease, transform 180ms ease; }
+.language-option:hover, .language-option[aria-pressed="true"] { background-color: rgb(14 165 233 / 0.2); }
+@media (hover: hover) and (pointer: fine) {
+  .dashboard-card:hover::before { opacity: 1; }
+  .social-links a:hover { transform: translateY(-4px) scale(1.06); }
+  .language-option:hover { transform: translateY(-2px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dashboard *, .dashboard *::before { transition: none !important; }
+  .dashboard-card::before { display: none; }
+  .social-links a:hover, .language-option:hover { transform: none; }
+}

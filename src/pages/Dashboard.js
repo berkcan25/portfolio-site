@@ -1,9 +1,9 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import Box from '../components/Box'; // Adjust the path as needed
 import '../index.css'; // Adjust the path to your CSS file
 import "@fontsource/roboto-mono";
 import { AppContext } from '../AppContext';
-import { motion, AnimatePresence } from 'framer-motion'; // Import Framer Motion
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'; // Import Framer Motion
 
 const textSizes = {
   title: 'text-3xl md:text-4xl lg:text-5xl font-bold',
@@ -21,27 +21,11 @@ const languages = [
   { code: 'az', flag: '🇦🇿', label: 'Azərbaycan' },
 ];
 
-const getRadialPosition = (index, total) => {
-  const radius = 85; // Distance from the center button (pixels)
-  const startAngle = 180; // Start at 9 o'clock (Left)
-  const endAngle = 0;     // End at 3 o'clock (Right)
-  
-  // Calculate angle for this specific item
-  const step = (startAngle - endAngle) / (total - 1);
-  const angleInDegrees = startAngle - (index * step);
-  
-  // Convert to radians
-  const angleInRadians = (angleInDegrees * Math.PI) / 180;
-
-  return {
-    x: Math.cos(angleInRadians) * radius,
-    y: -Math.sin(angleInRadians) * radius 
-  };
-};
-
 const Dashboard = () => {
-  const { theme, setTheme, setLanguage, t } = useContext(AppContext);
+  const { theme, setTheme, language, setLanguage, t } = useContext(AppContext);
   const [isLangHovered, setIsLangHovered] = useState(false);
+  const languageTrigger = useRef(null);
+  const reduceMotion = useReducedMotion();
 
   const clickToggleTheme = () => {
     setTheme(theme === 'dark' ? 'light' : 'dark')
@@ -51,21 +35,21 @@ const Dashboard = () => {
   const iconTransitionClass = `transition-all duration-300 ease-in-out ${theme === 'dark' ? 'invert brightness-0' : ''}`;
 
   return (
-    <div className={`p-8 
+    <div className={`dashboard p-4 sm:p-8
       ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'}
     flex flex-col overflow-auto
     lg:grid lg:grid-cols-3 lg:grid-rows-2 gap-5
     min-h-screen max-h-screen min-w-screen max-w-screen
     transition duration-300 ease-in-out`}>
       {/* Profile Section */}
-      <Box className="flex flex-col items-start space-y-4 col-span-1 row-span-1">
+      <Box entranceDelay={0} className="flex flex-col items-start space-y-4 col-span-1 row-span-1">
         <h1 className={textSizes.title}>Berk Can Tunçtan</h1>
         <p className={textSizes.medium}>{t.role}</p>
         <p className={`flex items-center space-x-2 ${textSizes.medium}`}>
           <span role="img" aria-label="pin">📍</span>
           <span>Atlanta, Georgia</span>
         </p>
-        <div className="flex justify-around w-full gap-2">
+        <div className="social-links flex justify-around w-full gap-2">
           <a href="https://github.com/berkcan25" target="_blank" rel="noopener noreferrer">
             <img 
               src="/lighticons/githubvector.svg" 
@@ -91,7 +75,7 @@ const Dashboard = () => {
       </Box>
 
       {/* Latest Projects Section */}
-      <Box isClickable={true} to="/projects" className="col-span-1 row-span-2 flex flex-col">
+      <Box entranceDelay={0.07} isClickable={true} to="/projects" className="col-span-1 row-span-2 flex flex-col">
         <div className="flex flex-col h-full gap-6"> {/* space-y yerine gap ve flex kullandık */}
           
           {/* Header */}
@@ -153,7 +137,7 @@ const Dashboard = () => {
       </Box>
 
       {/* About Me Section */}
-      <Box className="col-span-1 flex flex-col justify-between">
+      <Box entranceDelay={0.14} className="col-span-1 flex flex-col justify-between">
         <div className="flex items-center justify-between">
           <h2 className={textSizes.subtitle}>{t.about}</h2>
         </div>
@@ -180,7 +164,7 @@ const Dashboard = () => {
       </Box>
 
       {/* Tools Section */}
-      <Box isClickable={true} to="/tools" className="col-span-1">
+      <Box entranceDelay={0.21} isClickable={true} to="/tools" className="col-span-1">
         <div className="space-y-4 h-full ">
           <div className="flex items-center justify-between">
             <h2 className={textSizes.subtitle}>{t.tools}</h2>
@@ -222,95 +206,62 @@ const Dashboard = () => {
           </div>
         </Box> */}
 
-        <div className="flex flex-row gap-6">
-          <Box isClickable={true} className='w-1/2 flex items-center justify-center' onClickFunc={clickToggleTheme}>
+        <div className="dashboard-controls grid grid-cols-3 gap-3 sm:gap-6">
+          <Box entranceDelay={0.28} aria-label='Toggle color theme' aria-pressed={theme === 'dark'} isClickable={true} className='flex-1 min-w-0 flex items-center justify-center' onClickFunc={clickToggleTheme}>
              {/* Sun/Moon icons are usually different shapes, so we keep the source toggle here instead of inverting */}
-            <img src={`/${theme === 'dark' ? "sun" : "moon"}icon.svg`} alt="Toggle Theme" className='min-h-8 min-w-8'/>
+            <motion.img key={theme} initial={reduceMotion ? false : { rotate: -60, scale: 0.7, opacity: 0 }} animate={{ rotate: 0, scale: 1, opacity: 1 }} transition={{ duration: reduceMotion ? 0 : 0.25 }} src={`/${theme === 'dark' ? "sun" : "moon"}icon.svg`} alt="Toggle Theme" className='h-10 w-10'/>
           </Box>
         
-          {/* Animated Language Selector */}
-          <div 
-            className="w-1/2 relative flex items-center justify-center"
-            onMouseEnter={() => setIsLangHovered(true)}
-            onMouseLeave={() => setIsLangHovered(false)}
+          {/* A disclosure works with mouse, touch, and keyboard. */}
+          <div
+            className="language-control flex-1 min-w-0 relative flex items-center justify-center"
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) setIsLangHovered(false);
+            }}
+            onKeyDown={(event) => {
+              if (event.key === 'Escape') {
+                setIsLangHovered(false);
+                languageTrigger.current?.focus();
+              }
+            }}
           >
-            {/* The Main Trigger Button */}
-            <Box isClickable={false} className='w-full h-full flex items-center justify-center cursor-pointer relative z-20'>
-              <img 
-                src="/lighticons/globeicon.svg" 
-                alt="Toggle Language" 
-                className={`${iconTransitionClass} min-h-8 min-w-8`}
-              />
+            <Box entranceDelay={0.35} className="w-full h-full flex items-center justify-center relative z-20"
+              isClickable onClickFunc={() => setIsLangHovered(open => !open)}
+              ref={languageTrigger} aria-label="Choose language"
+              aria-expanded={isLangHovered} aria-controls="dashboard-languages">
+              <img src="/lighticons/globeicon.svg" alt=""
+                className={`${iconTransitionClass} h-10 w-10`} />
             </Box>
-
             <AnimatePresence>
               {isLangHovered && (
-                <div className="absolute top-1/2 left-1/2 w-0 h-0">
-                  <motion.div
-                      className="absolute -bottom-10 -left-32 w-64 h-40 bg-transparent rounded-t-full cursor-default z-10"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                  />
-                  {languages.map((lang, index) => (
-                    <motion.button
-                      key={lang.code}
-                      custom={index}
-                      onClick={(e) => {
-                          e.stopPropagation();
-                          setIsLangHovered(false);
-                          setLanguage(lang.code);
-                      }}
-                      className={`
-                        absolute -top-6 -left-6
-                        w-12 h-12 rounded-lg z-50
-                        flex items-center justify-center text-2xl shadow-md
-                        border-4 border-borders
-                        transition-colors duration-300 ease-in-out
-                        bg-bg-light text-black hover:bg-hover-bg-light
-                        dark:bg-bg-dark dark:text-white 
-                        dark:hover:border-hover-borders-dark dark:hover:bg-sky-950
-                        dark:hover:shadow-blue-950
-                        hover:shadow-orange-200
-                      `}
-                      initial="hidden"
-                      animate="visible"
-                      exit="hidden"
-                      variants={{
-                        hidden: { opacity: 0, scale: 0, x: 0, y: 0 },
-                        visible: (i) => {
-                          const pos = getRadialPosition(i, languages.length);
-                          return { 
-                            opacity: 1, 
-                            scale: 1, 
-                            x: pos.x, 
-                            y: pos.y,
-                            transition: { 
-                              type: "spring",
-                              stiffness: 300,
-                              damping: 20,
-                              delay: i * 0.05
-                            }
-                          };
-                        }
-                      }}
-                      whileHover={{ scale: 1.2, zIndex: 50 }}
-                      whileTap={{ scale: 0.9 }}
-                      title={lang.label}
-                    >
+                <motion.div id="dashboard-languages" role="group" aria-label="Languages"
+                  className="language-options absolute bottom-full mb-3 left-1/2 z-50 flex gap-1 p-2 rounded-xl border-2 border-borders bg-bg-light dark:bg-bg-dark shadow-xl"
+                  initial={reduceMotion ? false : { opacity: 0, y: 8, scale: 0.96 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, transition: { duration: reduceMotion ? 0 : 0.12 } }}
+                  transition={{ duration: reduceMotion ? 0 : 0.2 }}>
+                  {languages.map(lang => (
+                    <button type="button" key={lang.code} title={lang.label}
+                      aria-label={lang.label} aria-pressed={language === lang.code}
+                      className="language-option w-11 h-11 flex items-center justify-center rounded-lg text-2xl text-black dark:text-white"
+                      onClick={() => {
+                        setLanguage(lang.code);
+                        setIsLangHovered(false);
+                        languageTrigger.current?.focus();
+                      }}>
                       {lang.flag}
-                    </motion.button>
+                    </button>
                   ))}
-                </div>
+                </motion.div>
               )}
             </AnimatePresence>
           </div>
 
-          <Box isClickable={true} to='/' className='w-1/2 flex items-center justify-center'>
+          <Box entranceDelay={0.42} isClickable={true} to='/' className='flex-1 min-w-0 flex items-center justify-center'>
             <img 
               src="/lighticons/returnicon.svg" 
               alt="Back" 
-              className={`min-h-8 min-w-8 ${iconTransitionClass}`} 
+              className={`h-10 w-10 ${iconTransitionClass}`} 
             />
           </Box>
         </div>
