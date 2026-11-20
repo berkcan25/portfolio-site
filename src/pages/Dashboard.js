@@ -261,7 +261,7 @@ const Dashboard = () => {
             <img 
               src="/lighticons/returnicon.svg" 
               alt="Back" 
-              className={`h-10 w-10 ${iconTransitionClass}`} 
+              className={`h-10 w-10 ${iconTransitionClass}`}
             />
           </Box>
         </div>
