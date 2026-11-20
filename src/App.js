@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 import './index.css';
 import "@fontsource/roboto-mono";
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { AppProvider } from './AppContext';
 
 import StartPage from './pages/StartPage';
@@ -11,10 +11,17 @@ import ToolsPage from './pages/ToolsPage';
 // import BlogPage from './pages/BlogPage';
 
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+  useLayoutEffect(() => { window.scrollTo(0, 0); }, [pathname]);
+  return null;
+};
+
 const App = () => {
   return (
     <AppProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route path="/" element={<StartPage />} />
           <Route path="/dashboard" element={<Dashboard />} />

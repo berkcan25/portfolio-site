@@ -1,25 +1,27 @@
 import React, { useContext } from 'react';
-import Box from '../components/Box'; // Adjust the path as needed
-import '../index.css'; // Adjust the path to your CSS file
-import "@fontsource/roboto-mono";
-import { Typewriter } from 'react-simple-typewriter'
+import { Typewriter } from 'react-simple-typewriter';
+import { useReducedMotion } from 'framer-motion';
 import { AppContext } from '../AppContext';
+import Box from '../components/Box';
 
-const StartPage = () => {
-
-  const { theme, setTheme, setLanguage, t } = useContext(AppContext);
-
+export default function StartPage() {
+  const { t } = useContext(AppContext);
+  const reduceMotion = useReducedMotion();
   return (
-      <div className={`p-8 ${theme === 'dark' ? 'bg-bg-dark' : 'bg-bg-light'} h-screen w-screen`}>
-        <Box isClickable={true} theme={theme} to='/dashboard' className='h-full w-full flex flex-col justify-between p-10 sm:p-20'>
-            <div className="text-5xl sm:text-8xl lg:text-9xl">
-              <Typewriter words={["Merhaba", "Hello", "Bonjour", "Salam", "Привет"]}cursor={true} loop={false}/>
-            </div>
-            <h1 className="text-7xl sm:text-7xl lg:text-8xl">{t.greeting}</h1>
-            <p className="text-5xl sm:text-6xl lg:text-7xl">{t.clickStart}</p>
-        </Box>
-      </div>
+    <main className="dashboard welcome-page">
+      <Box entranceDelay={0} className="welcome-card profile-card" isClickable to="/dashboard">
+        <div className="welcome-top"><span className="profile-mark" aria-hidden="true">bc/</span><span>Berk Can Tunçtan</span></div>
+        <div className="welcome-message">
+          <div className="welcome-hello" aria-hidden="true">
+            {reduceMotion ? 'Hello' : <Typewriter words={['Merhaba', 'Hello', 'Bonjour', 'Salam', 'Привет']} cursor loop={false} />}
+          </div>
+          <h1>{t.greeting}</h1>
+        </div>
+        <div className="welcome-bottom">
+          <span className="welcome-cta">{t.clickStart}</span>
+          <div className="welcome-glyphs" aria-hidden="true"><span>Aa</span><span>Ж</span><span>ç</span></div>
+        </div>
+      </Box>
+    </main>
   );
-};
-
-export default StartPage;
+}
